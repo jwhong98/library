@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#new {
+    margin-bottom: 10px;
+}
+
+form {
+    width: 300px;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.active {
+    display: flex;
+}
+
+form > input {
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid black;
+}
+
+.add {
+    align-self: center;
+}
