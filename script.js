@@ -48,10 +48,8 @@ const createCard = (book, i) => {
     removeButton.classList.add('remove-button')
     removeButton.addEventListener('click', (e) => {
         const identifier = e.target.parentElement.dataset.index
-        const removeCard = document.querySelector(`[data-index="${identifier}"]`)
-        // myLibrary.splice(+identifier, 1)
-        // console.log(myLibrary);
-        container.removeChild(removeCard)
+        myLibrary.splice(+identifier, 1)
+        displayLibrary()
     })
 
     const toggleReadButton = document.createElement('button')
