@@ -8,6 +8,8 @@ newBookButton.addEventListener('click', () => {
     form.classList.toggle('active')
 })
 
+
+
 addBook.addEventListener('click', (e) => {
     e.preventDefault();
     let newTitle = document.getElementById('title').value;
@@ -26,16 +28,27 @@ const addBookToLibrary = (book) => {
 }
 
 const displayLibrary = () => {
-    myLibrary.map(createCard)
+    myLibrary.map((el, i) => createCard(el, i))
 }
 
-const createCard = (book) => {
+const createCard = (book, i) => {
     const card = document.createElement('div');
     card.classList.add('card')
+    card.dataset.index = i;
     const title = document.createElement('h1')
     const author = document.createElement('p')
     const pages = document.createElement('p')
     const status = document.createElement('p')
+
+    const remove = document.createElement('button')
+    remove.textContent = 'Remove Book'
+    remove.classList.add('remove-button')
+    remove.addEventListener('click', (e) => {
+        const identifier = e.target.parentElement.dataset.index
+        const removeCard = document.querySelector(`[data-index="${identifier}"]`)
+        container.removeChild(removeCard)
+    })
+    
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = book.pages;
@@ -44,6 +57,7 @@ const createCard = (book) => {
     card.appendChild(author)
     card.appendChild(pages)
     card.appendChild(status)
+    card.appendChild(remove)
     container.appendChild(card)
 }
 
