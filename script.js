@@ -8,8 +8,6 @@ newBookButton.addEventListener('click', () => {
     form.classList.toggle('active')
 })
 
-
-
 addBook.addEventListener('click', (e) => {
     e.preventDefault();
     let newTitle = document.getElementById('title').value;
@@ -20,7 +18,6 @@ addBook.addEventListener('click', (e) => {
     addBookToLibrary(newBook)
     displayLibrary()
     form.classList.toggle('active')
-    
 })
 
 const addBookToLibrary = (book) => {
@@ -38,10 +35,15 @@ const createCard = (book, i) => {
     const card = document.createElement('div');
     card.classList.add('card')
     card.dataset.index = i;
+
     const title = document.createElement('h1')
     const author = document.createElement('p')
     const pages = document.createElement('p')
     const status = document.createElement('p')
+    title.textContent = book.title;
+    author.textContent = book.author;
+    pages.textContent = book.pages;
+    status.textContent = book.read ? 'read' : 'not read yet'
 
     const removeButton = document.createElement('button')
     removeButton.textContent = 'Remove Book'
@@ -61,10 +63,6 @@ const createCard = (book, i) => {
         displayLibrary()
     })
     
-    title.textContent = book.title;
-    author.textContent = book.author;
-    pages.textContent = book.pages;
-    status.textContent = book.read ? 'read' : 'not read yet'
     card.appendChild(title)
     card.appendChild(author)
     card.appendChild(pages)
@@ -79,6 +77,15 @@ const createCard = (book, i) => {
 //     this.author = author;
 //     this.pages = pages;
 //     this.read = read;
+// }
+
+// Book.prototype.info = function() {
+//     let status = this.read ? "read" : 'not read yet';
+//     return `${this.title} by ${this.author}, ${this.pages} pages, ${status}`;
+// }
+
+// Book.prototype.toggleRead = function() {
+//     this.read = !this.read
 // }
 
 //class syntax
@@ -99,15 +106,6 @@ class Book {
         this.read = !this.read
     }
 }
-
-// Book.prototype.info = function() {
-//     let status = this.read ? "read" : 'not read yet';
-//     return `${this.title} by ${this.author}, ${this.pages} pages, ${status}`;
-// }
-
-// Book.prototype.toggleRead = function() {
-//     this.read = !this.read
-// }
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
 const harryPotter = new Book('Harry Potter', 'J.K. Rowling', 300, true);
