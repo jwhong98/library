@@ -43,13 +43,24 @@ const createCard = (book, i) => {
     const pages = document.createElement('p')
     const status = document.createElement('p')
 
-    const remove = document.createElement('button')
-    remove.textContent = 'Remove Book'
-    remove.classList.add('remove-button')
-    remove.addEventListener('click', (e) => {
+    const removeButton = document.createElement('button')
+    removeButton.textContent = 'Remove Book'
+    removeButton.classList.add('remove-button')
+    removeButton.addEventListener('click', (e) => {
         const identifier = e.target.parentElement.dataset.index
         const removeCard = document.querySelector(`[data-index="${identifier}"]`)
+        // myLibrary.splice(+identifier, 1)
+        // console.log(myLibrary);
         container.removeChild(removeCard)
+    })
+
+    const toggleReadButton = document.createElement('button')
+    toggleReadButton.textContent = 'Toggle read status'
+    toggleReadButton.classList.add('toggle-button')
+    toggleReadButton.addEventListener('click', (e) => {
+        const identifier = +e.target.parentElement.dataset.index;
+        myLibrary[identifier].toggleRead();
+        displayLibrary()
     })
     
     title.textContent = book.title;
@@ -60,7 +71,8 @@ const createCard = (book, i) => {
     card.appendChild(author)
     card.appendChild(pages)
     card.appendChild(status)
-    card.appendChild(remove)
+    card.appendChild(toggleReadButton)
+    card.appendChild(removeButton)
     container.appendChild(card)
 }
 
@@ -74,6 +86,10 @@ function Book(title, author, pages, read) {
 Book.prototype.info = function() {
     let status = this.read ? "read" : 'not read yet';
     return `${this.title} by ${this.author}, ${this.pages} pages, ${status}`;
+}
+
+Book.prototype.toggleRead = function() {
+    this.read = !this.read
 }
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
