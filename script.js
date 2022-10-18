@@ -74,21 +74,40 @@ const createCard = (book, i) => {
     container.appendChild(card)
 }
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+// function Book(title, author, pages, read) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+// }
+
+//class syntax
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    info() {
+        let status = this.read ? "read" : 'not read yet';
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${status}`;
+    }
+
+    toggleRead() {
+        this.read = !this.read
+    }
 }
 
-Book.prototype.info = function() {
-    let status = this.read ? "read" : 'not read yet';
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${status}`;
-}
+// Book.prototype.info = function() {
+//     let status = this.read ? "read" : 'not read yet';
+//     return `${this.title} by ${this.author}, ${this.pages} pages, ${status}`;
+// }
 
-Book.prototype.toggleRead = function() {
-    this.read = !this.read
-}
+// Book.prototype.toggleRead = function() {
+//     this.read = !this.read
+// }
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
 const harryPotter = new Book('Harry Potter', 'J.K. Rowling', 300, true);
