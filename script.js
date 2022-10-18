@@ -28,6 +28,9 @@ const addBookToLibrary = (book) => {
 }
 
 const displayLibrary = () => {
+    while(container.firstChild) {
+        container.removeChild(container.firstChild)
+    }
     myLibrary.map((el, i) => createCard(el, i))
 }
 
